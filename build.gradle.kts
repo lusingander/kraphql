@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.3.72"
+    application
 }
 
 group = "com.github.lusingander.kraphql"
@@ -11,4 +12,8 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+}
+
+application {
+    mainClassName = "com.github.lusingander.kraphql.KraphQLKt"
 }
