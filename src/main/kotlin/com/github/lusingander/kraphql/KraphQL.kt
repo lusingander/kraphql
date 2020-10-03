@@ -1,6 +1,9 @@
 package com.github.lusingander.kraphql
 
-fun main(args: Array<String>) {
-    println("Hello, KraphQL :)")
-    args.forEach(::println)
+import com.github.lusingander.kraphql.sdl.SdlLoader
+import com.github.lusingander.kraphql.sdl.SdlParser
+
+fun main() {
+    val sdls = SdlLoader().load()
+    sdls.forEach { SdlParser(it).parse() }
 }

@@ -12,6 +12,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+    implementation("com.graphql-java:graphql-java:2020-10-01T21-06-37-558aeaa")
 }
 
 application {
