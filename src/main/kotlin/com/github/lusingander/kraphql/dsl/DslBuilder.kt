@@ -2,18 +2,6 @@ package com.github.lusingander.kraphql.dsl
 
 import java.io.PrintWriter
 
-data class Types(
-    val objectTypes: List<ObjectType>,
-    val scalarTypes: List<CustomScalarType>,
-    val enumTypes: List<EnumType>
-) {
-
-    fun scalars(): Set<String> = ScalarTypes.labels() + customScalars() + enums()
-
-    private fun customScalars(): Set<String> = scalarTypes.map { it.name }.toSet()
-    private fun enums(): Set<String> = enumTypes.map { it.name }.toSet()
-}
-
 class DslBuilder(
     private val writer: PrintWriter
 ) {
@@ -23,7 +11,15 @@ class DslBuilder(
     fun build(types: Types) {
         writer.println("package $packageName")
         writer.println("")
-        writer.println("fun query(init: Query.() -> Unit) = Query().apply(init)")
+        if (types.existQuery()) {
+            writer.println("fun query(init: Query.() -> Unit) = Query().apply(init)")
+        }
+        if (types.existMutation()) {
+            writer.println("fun mutation(init: Mutation.() -> Unit) = Mutation().apply(init)")
+        }
+        if (types.existSubscription()) {
+            writer.println("fun subscription(init: Subscription.() -> Unit) = Subscription().apply(init)")
+        }
         writer.println("")
         writer.println("typealias ID = String")
         writer.println("")

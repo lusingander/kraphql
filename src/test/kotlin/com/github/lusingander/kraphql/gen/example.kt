@@ -1,6 +1,8 @@
 package com.example
 
 fun query(init: Query.() -> Unit) = Query().apply(init)
+fun mutation(init: Mutation.() -> Unit) = Mutation().apply(init)
+fun subscription(init: Subscription.() -> Unit) = Subscription().apply(init)
 
 typealias ID = String
 
