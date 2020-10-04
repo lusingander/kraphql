@@ -3,13 +3,12 @@ package com.github.lusingander.kraphql.dsl
 import java.io.PrintWriter
 
 class DslBuilder(
+    private val configuration: Configuration,
     private val writer: PrintWriter
 ) {
 
-    private val packageName = "com.example"
-
     fun build(types: Types) {
-        writer.println("package $packageName")
+        writer.println("package ${configuration.packageName}")
         writer.println("")
         if (types.existQuery()) {
             writer.println("fun query(init: Query.() -> Unit) = Query().apply(init)")
