@@ -5,4 +5,8 @@ enum class RootType(val label: String) {
     MUTATION("Mutation"),
     SUBSCRIPTION("Subscription"),
     ;
+
+    companion object {
+        fun labels(): Set<String> = RootType.values().map { it.label }.toSet()
+    }
 }

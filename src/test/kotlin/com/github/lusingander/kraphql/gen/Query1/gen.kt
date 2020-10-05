@@ -48,7 +48,7 @@ open class ScalarWithArgsNode(__name: String, private val args: Map<String, Any?
 }
 
 
-class Query(__name: String = "Query"): ObjectNode(__name) {
+class Query(__name: String = "query"): ObjectNode(__name) {
     fun foo(init: Foo.() -> Unit) =
         Foo("foo").also { doInit(it, init) }
 }
@@ -58,10 +58,10 @@ class Foo(__name: String = "Foo"): ObjectNode(__name) {
         ScalarNode("foo1").also { doInit(it) }
     val foo2 get() =
         ScalarNode("foo2").also { doInit(it) }
-    val foo3 get() =
-        ScalarNode("foo3").also { doInit(it) }
-    val foo4 get() =
-        ScalarNode("foo4").also { doInit(it) }
-    val foo5 get() =
-        ScalarNode("foo5").also { doInit(it) }
+    val Foo3 get() =
+        ScalarNode("Foo3").also { doInit(it) }
+    val FOO4 get() =
+        ScalarNode("FOO4").also { doInit(it) }
+    val fOo5 get() =
+        ScalarNode("fOo5").also { doInit(it) }
 }

@@ -5,7 +5,7 @@ type Query {
 type Foo {
    foo1: ID!
    foo2: String!
-   foo3: Int!
-   foo4: Float!
-   foo5: Boolean!
+   Foo3: Int!
+   FOO4: Float!
+   fOo5: Boolean!
 }

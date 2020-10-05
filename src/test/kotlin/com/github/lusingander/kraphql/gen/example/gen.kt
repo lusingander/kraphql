@@ -86,14 +86,14 @@ class Lift(__name: String = "Lift"): ObjectNode(__name) {
         Trail("trailAccess").also { doInit(it, init) }
 }
 
-class Mutation(__name: String = "Mutation"): ObjectNode(__name) {
+class Mutation(__name: String = "mutation"): ObjectNode(__name) {
     fun setLiftStatus(id: ID, status: LiftStatus, init: Lift.() -> Unit) =
         Lift("setLiftStatus").apply { addArgs("id", id) }.apply { addArgs("status", status) }.also { doInit(it, init) }
     fun setTrailStatus(id: ID, status: TrailStatus, init: Trail.() -> Unit) =
         Trail("setTrailStatus").apply { addArgs("id", id) }.apply { addArgs("status", status) }.also { doInit(it, init) }
 }
 
-class Query(__name: String = "Query"): ObjectNode(__name) {
+class Query(__name: String = "query"): ObjectNode(__name) {
     fun allLifts(status: LiftStatus? = null, init: Lift.() -> Unit) =
         Lift("allLifts").apply { addArgs("status", status) }.also { doInit(it, init) }
     fun allTrails(status: TrailStatus? = null, init: Trail.() -> Unit) =
@@ -112,7 +112,7 @@ class Query(__name: String = "Query"): ObjectNode(__name) {
         ScalarNode("sweet").also { doInit(it) }
 }
 
-class Subscription(__name: String = "Subscription"): ObjectNode(__name) {
+class Subscription(__name: String = "subscription"): ObjectNode(__name) {
     fun liftStatusChange(init: Lift.() -> Unit) =
         Lift("liftStatusChange").also { doInit(it, init) }
     fun trailStatusChange(init: Trail.() -> Unit) =
