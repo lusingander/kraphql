@@ -1,30 +1,26 @@
 package com.github.lusingander.kraphql.test
 
-import com.github.lusingander.kraphql.gen.Query1.query
+import com.github.lusingander.kraphql.gen.CustomScalar.query
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class Query1 {
+class CustomScalar {
 
     @Test
-    fun nonNullScalar() {
+    fun query() {
         val q = query {
-            foo {
-                foo1
-                foo2
-                Foo3
-                FOO4
-                fOo5
+            customScalars {
+                datetime
+                date
+                time
             }
         }
         val expected = """
             query {
-              foo {
-                foo1
-                foo2
-                Foo3
-                FOO4
-                fOo5
+              customScalars {
+                datetime
+                date
+                time
               }
             }
         """.trimIndent()

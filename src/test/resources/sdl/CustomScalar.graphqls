@@ -1,0 +1,15 @@
+type Query {
+    customScalars: CustomScalars!
+}
+
+type CustomScalars {
+    datetime: DateTime!
+    date: Date
+    time: Time
+}
+
+scalar DateTime
+
+scalar Date
+
+scalar Time
