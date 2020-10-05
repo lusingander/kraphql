@@ -1,4 +1,4 @@
-package com.example
+package com.github.lusingander.kraphql.gen.example
 
 fun query(init: Query.() -> Unit) = Query().apply(init)
 fun mutation(init: Mutation.() -> Unit) = Mutation().apply(init)
