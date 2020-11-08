@@ -1,10 +1,10 @@
 package com.github.lusingander.kraphql.test
 
-import com.github.lusingander.kraphql.gen.Query1.query
+import com.github.lusingander.kraphql.gen.Scalar.query
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class Query1 {
+class Scalar {
 
     @Test
     fun nonNullScalar() {

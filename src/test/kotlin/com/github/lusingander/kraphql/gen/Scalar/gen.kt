@@ -1,4 +1,4 @@
-package com.github.lusingander.kraphql.gen.Query1
+package com.github.lusingander.kraphql.gen.Scalar
 
 fun query(init: Query.() -> Unit) = Query().apply(init)
 
