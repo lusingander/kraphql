@@ -1,0 +1,20 @@
+type Query {
+    enumFields: EnumFields
+}
+
+type EnumFields {
+    color: Color!
+    episode: Episode
+}
+
+enum Color {
+    RED
+    BLUE
+    GREEN
+}
+
+enum Episode {
+    NEWHOPE
+    EMPIRE
+    JEDI
+}

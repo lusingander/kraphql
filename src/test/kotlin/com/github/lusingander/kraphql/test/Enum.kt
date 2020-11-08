@@ -1,30 +1,24 @@
 package com.github.lusingander.kraphql.test
 
-import com.github.lusingander.kraphql.gen.Scalar.query
+import com.github.lusingander.kraphql.gen.Enum.query
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class Scalar {
+class Enum {
 
     @Test
     fun query() {
         val q = query {
-            foo {
-                foo1
-                foo2
-                Foo3
-                FOO4
-                fOo5
+            enumFields {
+                color
+                episode
             }
         }
         val expected = """
             query {
-              foo {
-                foo1
-                foo2
-                Foo3
-                FOO4
-                fOo5
+              enumFields {
+                color
+                episode
               }
             }
         """.trimIndent()
