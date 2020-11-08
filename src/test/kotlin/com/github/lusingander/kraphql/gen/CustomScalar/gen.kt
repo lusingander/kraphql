@@ -3,6 +3,9 @@ package com.github.lusingander.kraphql.gen.CustomScalar
 fun query(init: Query.() -> Unit) = Query().apply(init)
 
 typealias ID = String
+typealias DateTime = String
+typealias Date = String
+typealias Time = String
 
 @DslMarker
 annotation class GraphQLMarker

@@ -246,4 +246,44 @@ class SingleNullableArgument {
 
         assertThat(actual).isEqualTo(expected)
     }
+
+    @Test
+    fun argsCustomScalar_null() {
+        val q = query {
+            argsCustomScalar {
+                my
+            }
+        }
+        val expected = """
+            query {
+              argsCustomScalar {
+                my
+              }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsCustomScalar_notNull() {
+        val q = query {
+            argsCustomScalar(my = "custom scalar") {
+                my
+            }
+        }
+        val expected = """
+            query {
+              argsCustomScalar(my: "custom scalar") {
+                my
+              }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
 }

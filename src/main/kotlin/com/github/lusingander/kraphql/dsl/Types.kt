@@ -10,12 +10,12 @@ data class Types(
 ) {
 
     fun scalars(): Set<String> = ScalarType.labels() + customScalars() + enums()
+    fun customScalars(): Set<String> = scalarTypes.map { it.name }.toSet()
 
     fun existQuery(): Boolean = existRootTypeOf(RootType.QUERY)
     fun existMutation(): Boolean = existRootTypeOf(RootType.MUTATION)
     fun existSubscription(): Boolean = existRootTypeOf(RootType.SUBSCRIPTION)
 
-    private fun customScalars(): Set<String> = scalarTypes.map { it.name }.toSet()
     private fun enums(): Set<String> = enumTypes.map { it.name }.toSet()
 
     private fun existRootTypeOf(type: RootType): Boolean = objectTypes.any { it.name == type.label }

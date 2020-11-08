@@ -3,6 +3,7 @@ package com.github.lusingander.kraphql.gen.SingleNullableArgument
 fun query(init: Query.() -> Unit) = Query().apply(init)
 
 typealias ID = String
+typealias MyScalar = String
 
 @DslMarker
 annotation class GraphQLMarker
@@ -68,6 +69,8 @@ class Query(__name: String = "query"): ObjectNode(__name) {
         Foo("argsBoolean").apply { addArgs("isFoo", isFoo) }.also { doInit(it, init) }
     fun argsEnum(color: Color? = null, init: Foo.() -> Unit) =
         Foo("argsEnum").apply { addArgs("color", color) }.also { doInit(it, init) }
+    fun argsCustomScalar(my: MyScalar? = null, init: Foo.() -> Unit) =
+        Foo("argsCustomScalar").apply { addArgs("my", my) }.also { doInit(it, init) }
 }
 
 class Foo(__name: String = "Foo"): ObjectNode(__name) {
@@ -83,4 +86,6 @@ class Foo(__name: String = "Foo"): ObjectNode(__name) {
         ScalarNode("isFoo").also { doInit(it) }
     val color get() =
         ScalarNode("color").also { doInit(it) }
+    val my get() =
+        ScalarNode("my").also { doInit(it) }
 }

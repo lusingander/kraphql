@@ -126,4 +126,24 @@ class SingleNonNullArgument {
 
         assertThat(actual).isEqualTo(expected)
     }
+
+    @Test
+    fun argsCustomScalar() {
+        val q = query {
+            argsCustomScalar(my = "custom scalar") {
+                my
+            }
+        }
+        val expected = """
+            query {
+              argsCustomScalar(my: "custom scalar") {
+                my
+              }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
 }

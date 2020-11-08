@@ -5,7 +5,7 @@ type Query {
     argsFloat(rate: Float!): Foo
     argsBoolean(isFoo: Boolean!): Foo
     argsEnum(color: Color!): Foo
-    #argsCustomScalar(my: MyScalar!): Foo
+    argsCustomScalar(my: MyScalar!): Foo
 }
 
 type Foo {
@@ -15,7 +15,7 @@ type Foo {
     rate: Float!
     isFoo: Boolean!
     color: Color!
-    #my: MyScalar!
+    my: MyScalar!
 }
 
 enum Color {
@@ -24,4 +24,4 @@ enum Color {
     GREEN
 }
 
-#scalar MyScalar
+scalar MyScalar

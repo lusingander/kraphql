@@ -5,6 +5,7 @@ fun mutation(init: Mutation.() -> Unit) = Mutation().apply(init)
 fun subscription(init: Subscription.() -> Unit) = Subscription().apply(init)
 
 typealias ID = String
+typealias Upload = String
 
 @DslMarker
 annotation class GraphQLMarker

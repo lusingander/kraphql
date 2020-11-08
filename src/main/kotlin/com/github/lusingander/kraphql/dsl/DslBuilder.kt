@@ -21,6 +21,9 @@ class DslBuilder(
         }
         writer.println("")
         writer.println("typealias ID = String")
+        types.customScalars().forEach {
+            writer.println("typealias $it = String")
+        }
         writer.println("")
         writer.println("@DslMarker")
         writer.println("annotation class GraphQLMarker")
