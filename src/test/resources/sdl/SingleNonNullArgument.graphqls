@@ -1,0 +1,27 @@
+type Query {
+    argsId(id: ID!): Foo
+    argsString(name: String!): Foo
+    argsInt(value: Int!): Foo
+    argsFloat(rate: Float!): Foo
+    argsBoolean(isFoo: Boolean!): Foo
+    argsEnum(color: Color!): Foo
+    #argsCustomScalar(my: MyScalar!): Foo
+}
+
+type Foo {
+    id: ID!
+    name: String!
+    value: Int!
+    rate: Float!
+    isFoo: Boolean!
+    color: Color!
+    #my: MyScalar!
+}
+
+enum Color {
+    RED
+    BLUE
+    GREEN
+}
+
+#scalar MyScalar
