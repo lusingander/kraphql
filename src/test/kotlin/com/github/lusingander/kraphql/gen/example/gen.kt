@@ -32,7 +32,7 @@ open class ObjectNode(protected val __name: String) {
             return ""
         }
         val str = filtered.map { (k, v) ->
-            "$k: $v"
+            if (v is String) "$k: \"$v\"" else "$k: $v"
         }.joinToString(separator = ", ")
         return "($str)"
     }

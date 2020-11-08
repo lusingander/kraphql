@@ -48,7 +48,7 @@ class DslBuilder(
         writer.println("            return \"\"")
         writer.println("        }")
         writer.println("        val str = filtered.map { (k, v) ->")
-        writer.println("            \"\$k: \$v\"")
+        writer.println("            if (v is String) \"\$k: \\\"\$v\\\"\" else \"\$k: \$v\"")
         writer.println("        }.joinToString(separator = \", \")")
         writer.println("        return \"(\$str)\"")
         writer.println("    }")
