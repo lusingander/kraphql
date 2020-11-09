@@ -1,0 +1,23 @@
+type Query {
+    bookById(id: ID!): Book
+    books1(publisher: String!, author: String!): [Book!]!
+    books2(priceMin: Float!, priceMax: Float!): [Book!]!
+    books3(pageMin: Int!, pageMax: Int!, size: Size!): [Book!]!
+}
+
+type Book {
+    id: ID!
+    publisher: String!
+    title: String!
+    author: String!
+    page: Int!
+    price: Float!
+    size: Size!
+}
+
+enum Size {
+    LARGE
+    MEDIUM
+    SMALL
+}
+
