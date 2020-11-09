@@ -1,0 +1,16 @@
+type Query {
+    foo(id: ID!): Foo
+}
+
+type Mutation {
+    foo(id: ID!): Foo
+}
+
+type Subscription {
+    foo(id: ID!): Foo
+}
+
+type Foo {
+    id: ID!
+    name: String!
+}
