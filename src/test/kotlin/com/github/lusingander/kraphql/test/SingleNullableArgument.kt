@@ -286,4 +286,245 @@ class SingleNullableArgument {
 
         assertThat(actual).isEqualTo(expected)
     }
+
+
+    @Test
+    fun argsIdWithDefault_null() {
+        val q = query {
+            argsIdWithDefault {
+                id
+            }
+        }
+        val expected = """
+            query {
+              argsIdWithDefault {
+                id
+              }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsIdWithDefault_notNull() {
+        val q = query {
+            argsIdWithDefault(id = "abc123") {
+                id
+            }
+        }
+        val expected = """
+            query {
+              argsIdWithDefault(id: "abc123") {
+                id
+              }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsStringWithDefault_null() {
+        val q = query {
+            argsStringWithDefault {
+                name
+            }
+        }
+        val expected = """
+            query {
+              argsStringWithDefault {
+                name
+              }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsStringWithDefault_notNull() {
+        val q = query {
+            argsStringWithDefault(name = "foo bar") {
+                name
+            }
+        }
+        val expected = """
+            query {
+              argsStringWithDefault(name: "foo bar") {
+                name
+              }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsIntWithDefault_null() {
+        val q = query {
+            argsIntWithDefault {
+                value
+            }
+        }
+        val expected = """
+            query {
+              argsIntWithDefault {
+                value
+              }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsIntWithDefault_notNull() {
+        val q = query {
+            argsIntWithDefault(value = 100) {
+                value
+            }
+        }
+        val expected = """
+            query {
+              argsIntWithDefault(value: 100) {
+                value
+              }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsFloatWithDefault_null() {
+        val q = query {
+            argsFloatWithDefault {
+                rate
+            }
+        }
+        val expected = """
+            query {
+              argsFloatWithDefault {
+                rate
+              }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsFloatWithDefault_notNull() {
+        val q = query {
+            argsFloatWithDefault(rate = 0.05f) {
+                rate
+            }
+        }
+        val expected = """
+            query {
+              argsFloatWithDefault(rate: 0.05) {
+                rate
+              }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsBooleanWithDefault_null() {
+        val q = query {
+            argsBooleanWithDefault {
+                isFoo
+            }
+        }
+        val expected = """
+            query {
+              argsBooleanWithDefault {
+                isFoo
+              }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsBooleanWithDefault_notNull() {
+        val q = query {
+            argsBooleanWithDefault(isFoo = true) {
+                isFoo
+            }
+        }
+        val expected = """
+            query {
+              argsBooleanWithDefault(isFoo: true) {
+                isFoo
+              }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsEnumWithDefault_null() {
+        val q = query {
+            argsEnumWithDefault {
+                color
+            }
+        }
+        val expected = """
+            query {
+              argsEnumWithDefault {
+                color
+              }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsEnumWithDefault_notNull() {
+        val q = query {
+            argsEnumWithDefault(color = Color.BLUE) {
+                color
+            }
+        }
+        val expected = """
+            query {
+              argsEnumWithDefault(color: BLUE) {
+                color
+              }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
 }

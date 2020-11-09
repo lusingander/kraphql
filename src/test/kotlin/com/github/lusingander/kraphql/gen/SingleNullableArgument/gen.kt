@@ -71,6 +71,20 @@ class Query(__name: String = "query"): ObjectNode(__name) {
         Foo("argsEnum").apply { addArgs("color", color) }.also { doInit(it, init) }
     fun argsCustomScalar(my: MyScalar? = null, init: Foo.() -> Unit) =
         Foo("argsCustomScalar").apply { addArgs("my", my) }.also { doInit(it, init) }
+    fun argsIdWithDefault(id: ID? = null, init: Foo.() -> Unit) =
+        Foo("argsIdWithDefault").apply { addArgs("id", id) }.also { doInit(it, init) }
+    fun argsStringWithDefault(name: String? = null, init: Foo.() -> Unit) =
+        Foo("argsStringWithDefault").apply { addArgs("name", name) }.also { doInit(it, init) }
+    fun argsIntWithDefault(value: Int? = null, init: Foo.() -> Unit) =
+        Foo("argsIntWithDefault").apply { addArgs("value", value) }.also { doInit(it, init) }
+    fun argsFloatWithDefault(rate: Float? = null, init: Foo.() -> Unit) =
+        Foo("argsFloatWithDefault").apply { addArgs("rate", rate) }.also { doInit(it, init) }
+    fun argsBooleanWithDefault(isFoo: Boolean? = null, init: Foo.() -> Unit) =
+        Foo("argsBooleanWithDefault").apply { addArgs("isFoo", isFoo) }.also { doInit(it, init) }
+    fun argsEnumWithDefault(color: Color? = null, init: Foo.() -> Unit) =
+        Foo("argsEnumWithDefault").apply { addArgs("color", color) }.also { doInit(it, init) }
+    fun argsCustomScalarWithDefault(my: MyScalar? = null, init: Foo.() -> Unit) =
+        Foo("argsCustomScalarWithDefault").apply { addArgs("my", my) }.also { doInit(it, init) }
 }
 
 class Foo(__name: String = "Foo"): ObjectNode(__name) {

@@ -6,6 +6,14 @@ type Query {
     argsBoolean(isFoo: Boolean): Foo
     argsEnum(color: Color): Foo
     argsCustomScalar(my: MyScalar): Foo
+
+    argsIdWithDefault(id: ID = "defaultId"): Foo
+    argsStringWithDefault(name: String = "defaultName"): Foo
+    argsIntWithDefault(value: Int = 100): Foo
+    argsFloatWithDefault(rate: Float = 0.01): Foo
+    argsBooleanWithDefault(isFoo: Boolean = false): Foo
+    argsEnumWithDefault(color: Color = RED): Foo
+    argsCustomScalarWithDefault(my: MyScalar = "defaultMyScalar"): Foo
 }
 
 type Foo {
