@@ -87,7 +87,6 @@ fun Type<*>.isNonNull(): Boolean = this is NonNullType
 class InputValue(
     val name: String,
     val type: String,
-    val defaultValue: String?,
     val nonNull: Boolean
 ) {
 
@@ -103,10 +102,10 @@ class InputValue(
         }
 
     private fun defaultValueStr(): String =
-        if (nonNull && defaultValue == null) {
+        if (nonNull) {
             ""
         } else {
-            " = $defaultValue"
+            " = null"
         }
 }
 
@@ -114,7 +113,6 @@ fun InputValueDefinition.convert(): InputValue {
     return InputValue(
         name = this.name,
         type = this.type.baseTypeName(),
-        defaultValue = null, // TODO not implemented
         nonNull = this.type.isNonNull()
     )
 }
