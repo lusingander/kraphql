@@ -42,6 +42,10 @@ class ObjectField(
                 val pairs = inputs.joinToString(separator = ", ") { it.pairStr() }
                 writer.println("    fun $name($args) =")
                 writer.println("        ScalarWithArgsNode(\"$name\", mapOf($pairs)).also { doInit(it) }")
+                if (inputs.none { it.nonNull }) {
+                    writer.println("    val $name get() =")
+                    writer.println("        ScalarNode(\"$name\").also { doInit(it) }")
+                }
             } else {
                 writer.println("    val $name get() =")
                 writer.println("        ScalarNode(\"$name\").also { doInit(it) }")
