@@ -1,0 +1,21 @@
+type Query {
+    query1(key1: String, key2: String): Book
+    query2(key1: Int = 100, key2: Int = 200): Book
+    query3(key1: Float, key2: Float = 0.12): Book
+    query4(key1: Boolean = true, key2: Boolean, key3: Size = SMALL): Book
+}
+
+type Book {
+    id: ID!
+    title: String!
+    author: String!
+    page: Int!
+    size: Size!
+}
+
+enum Size {
+    LARGE
+    MEDIUM
+    SMALL
+}
+
