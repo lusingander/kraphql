@@ -43,7 +43,15 @@ open class ScalarNode(__name: String): ObjectNode(__name) {
 
 open class ScalarWithArgsNode(__name: String, private val args: Map<String, Any?>): ObjectNode(__name) {
     override fun toString(): String {
-        val argsStr = args.map { "${it.key}: ${it.value}" }.joinToString(separator = ", ")
+        val filtered = args.filter { (_, v) ->
+            v != null
+        }
+        if (filtered.isEmpty()) {
+            return __name
+        }
+        val argsStr = filtered.map {
+            if (it.value is String) "${it.key}: \"${it.value}\"" else "${it.key}: ${it.value}"
+        }.joinToString(separator = ", ")
         return "$__name($argsStr)"
     }
 }
@@ -71,6 +79,10 @@ class Query(__name: String = "query"): ObjectNode(__name) {
         Foo("argsEnum").apply { addArgs("color", color) }.also { doInit(it, init) }
     fun argsCustomScalar(my: MyScalar, init: Foo.() -> Unit) =
         Foo("argsCustomScalar").apply { addArgs("my", my) }.also { doInit(it, init) }
+    fun argsReturnsScalar(id: ID) =
+        ScalarWithArgsNode("argsReturnsScalar", mapOf("id" to id)).also { doInit(it) }
+    fun argsReturnsCustomScalar(id: ID) =
+        ScalarWithArgsNode("argsReturnsCustomScalar", mapOf("id" to id)).also { doInit(it) }
 }
 
 class Foo(__name: String = "Foo"): ObjectNode(__name) {

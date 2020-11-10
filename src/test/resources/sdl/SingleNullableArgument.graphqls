@@ -7,6 +7,9 @@ type Query {
     argsEnum(color: Color): Foo
     argsCustomScalar(my: MyScalar): Foo
 
+    argsReturnsScalar(id: ID): Int
+    argsReturnsCustomScalar(id: ID): MyScalar
+
     argsIdWithDefault(id: ID = "defaultId"): Foo
     argsStringWithDefault(name: String = "defaultName"): Foo
     argsIntWithDefault(value: Int = 100): Foo
@@ -14,6 +17,9 @@ type Query {
     argsBooleanWithDefault(isFoo: Boolean = false): Foo
     argsEnumWithDefault(color: Color = RED): Foo
     argsCustomScalarWithDefault(my: MyScalar = "defaultMyScalar"): Foo
+
+    argsReturnsScalarWithDefault(id: ID = "defaultId"): Int
+    argsReturnsCustomScalarWithDefault(id: ID = "defaultId"): MyScalar
 }
 
 type Foo {

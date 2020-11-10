@@ -6,6 +6,9 @@ type Query {
     argsBoolean(isFoo: Boolean!): Foo
     argsEnum(color: Color!): Foo
     argsCustomScalar(my: MyScalar!): Foo
+
+    argsReturnsScalar(id: ID!): Int
+    argsReturnsCustomScalar(id: ID!): MyScalar
 }
 
 type Foo {

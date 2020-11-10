@@ -287,6 +287,69 @@ class SingleNullableArgument {
         assertThat(actual).isEqualTo(expected)
     }
 
+    @Test
+    fun argsReturnsScalar_null() {
+        val q = query {
+            argsReturnsScalar()
+        }
+        val expected = """
+            query {
+              argsReturnsScalar
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsReturnsScalar_notNull() {
+        val q = query {
+            argsReturnsScalar(id = "abc123")
+        }
+        val expected = """
+            query {
+              argsReturnsScalar(id: "abc123")
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsReturnsCustomScalar_null() {
+        val q = query {
+            argsReturnsCustomScalar()
+        }
+        val expected = """
+            query {
+              argsReturnsCustomScalar
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsReturnsCustomScalar_notNull() {
+        val q = query {
+            argsReturnsCustomScalar(id = "abc123")
+        }
+        val expected = """
+            query {
+              argsReturnsCustomScalar(id: "abc123")
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
 
     @Test
     fun argsIdWithDefault_null() {
@@ -520,6 +583,70 @@ class SingleNullableArgument {
               argsEnumWithDefault(color: BLUE) {
                 color
               }
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsReturnsScalarWithDefault_null() {
+        val q = query {
+            argsReturnsScalarWithDefault()
+        }
+        val expected = """
+            query {
+              argsReturnsScalarWithDefault
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsReturnsScalarWithDefault_notNull() {
+        val q = query {
+            argsReturnsScalarWithDefault(id = "abc123")
+        }
+        val expected = """
+            query {
+              argsReturnsScalarWithDefault(id: "abc123")
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsReturnsCustomScalarWithDefault_null() {
+        val q = query {
+            argsReturnsCustomScalarWithDefault()
+        }
+        val expected = """
+            query {
+              argsReturnsCustomScalarWithDefault
+            }
+        """.trimIndent()
+
+        val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsReturnsCustomScalarWithDefault_notNull() {
+        val q = query {
+            argsReturnsCustomScalarWithDefault(id = "abc123")
+        }
+        val expected = """
+            query {
+              argsReturnsCustomScalarWithDefault(id: "abc123")
             }
         """.trimIndent()
 

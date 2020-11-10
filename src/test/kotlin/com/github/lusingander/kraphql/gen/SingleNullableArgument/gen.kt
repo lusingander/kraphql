@@ -43,7 +43,15 @@ open class ScalarNode(__name: String): ObjectNode(__name) {
 
 open class ScalarWithArgsNode(__name: String, private val args: Map<String, Any?>): ObjectNode(__name) {
     override fun toString(): String {
-        val argsStr = args.map { "${it.key}: ${it.value}" }.joinToString(separator = ", ")
+        val filtered = args.filter { (_, v) ->
+            v != null
+        }
+        if (filtered.isEmpty()) {
+            return __name
+        }
+        val argsStr = filtered.map {
+            if (it.value is String) "${it.key}: \"${it.value}\"" else "${it.key}: ${it.value}"
+        }.joinToString(separator = ", ")
         return "$__name($argsStr)"
     }
 }
@@ -71,6 +79,10 @@ class Query(__name: String = "query"): ObjectNode(__name) {
         Foo("argsEnum").apply { addArgs("color", color) }.also { doInit(it, init) }
     fun argsCustomScalar(my: MyScalar? = null, init: Foo.() -> Unit) =
         Foo("argsCustomScalar").apply { addArgs("my", my) }.also { doInit(it, init) }
+    fun argsReturnsScalar(id: ID? = null) =
+        ScalarWithArgsNode("argsReturnsScalar", mapOf("id" to id)).also { doInit(it) }
+    fun argsReturnsCustomScalar(id: ID? = null) =
+        ScalarWithArgsNode("argsReturnsCustomScalar", mapOf("id" to id)).also { doInit(it) }
     fun argsIdWithDefault(id: ID? = null, init: Foo.() -> Unit) =
         Foo("argsIdWithDefault").apply { addArgs("id", id) }.also { doInit(it, init) }
     fun argsStringWithDefault(name: String? = null, init: Foo.() -> Unit) =
@@ -85,6 +97,10 @@ class Query(__name: String = "query"): ObjectNode(__name) {
         Foo("argsEnumWithDefault").apply { addArgs("color", color) }.also { doInit(it, init) }
     fun argsCustomScalarWithDefault(my: MyScalar? = null, init: Foo.() -> Unit) =
         Foo("argsCustomScalarWithDefault").apply { addArgs("my", my) }.also { doInit(it, init) }
+    fun argsReturnsScalarWithDefault(id: ID? = null) =
+        ScalarWithArgsNode("argsReturnsScalarWithDefault", mapOf("id" to id)).also { doInit(it) }
+    fun argsReturnsCustomScalarWithDefault(id: ID? = null) =
+        ScalarWithArgsNode("argsReturnsCustomScalarWithDefault", mapOf("id" to id)).also { doInit(it) }
 }
 
 class Foo(__name: String = "Foo"): ObjectNode(__name) {

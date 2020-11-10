@@ -42,7 +42,15 @@ open class ScalarNode(__name: String): ObjectNode(__name) {
 
 open class ScalarWithArgsNode(__name: String, private val args: Map<String, Any?>): ObjectNode(__name) {
     override fun toString(): String {
-        val argsStr = args.map { "${it.key}: ${it.value}" }.joinToString(separator = ", ")
+        val filtered = args.filter { (_, v) ->
+            v != null
+        }
+        if (filtered.isEmpty()) {
+            return __name
+        }
+        val argsStr = filtered.map {
+            if (it.value is String) "${it.key}: \"${it.value}\"" else "${it.key}: ${it.value}"
+        }.joinToString(separator = ", ")
         return "$__name($argsStr)"
     }
 }
