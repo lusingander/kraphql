@@ -10,8 +10,8 @@ annotation class GraphQLMarker
 
 @GraphQLMarker
 open class ObjectNode(protected val __name: String) {
-    val children = mutableListOf<ObjectNode>()
-    val argsMap: MutableMap<String, Any?> = mutableMapOf()
+    private val children = mutableListOf<ObjectNode>()
+    private val argsMap: MutableMap<String, Any?> = mutableMapOf()
 
     fun <T : ObjectNode> doInit(child: T, init: T.() -> Unit = {}) {
         child.init()
