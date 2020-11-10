@@ -290,7 +290,7 @@ class SingleNullableArgument {
     @Test
     fun argsReturnsScalar_null() {
         val q = query {
-            argsReturnsScalar()
+            argsReturnsScalar
         }
         val expected = """
             query {
@@ -322,7 +322,7 @@ class SingleNullableArgument {
     @Test
     fun argsReturnsCustomScalar_null() {
         val q = query {
-            argsReturnsCustomScalar()
+            argsReturnsCustomScalar
         }
         val expected = """
             query {
@@ -634,7 +634,7 @@ class SingleNullableArgument {
     @Test
     fun argsReturnsScalarWithDefault_null() {
         val q = query {
-            argsReturnsScalarWithDefault()
+            argsReturnsScalarWithDefault
         }
         val expected = """
             query {
@@ -666,7 +666,7 @@ class SingleNullableArgument {
     @Test
     fun argsReturnsCustomScalarWithDefault_null() {
         val q = query {
-            argsReturnsCustomScalarWithDefault()
+            argsReturnsCustomScalarWithDefault
         }
         val expected = """
             query {

@@ -81,8 +81,12 @@ class Query(__name: String = "query"): ObjectNode(__name) {
         Foo("argsCustomScalar").apply { addArgs("my", my) }.also { doInit(it, init) }
     fun argsReturnsScalar(id: ID? = null) =
         ScalarWithArgsNode("argsReturnsScalar", mapOf("id" to id)).also { doInit(it) }
+    val argsReturnsScalar get() =
+        ScalarNode("argsReturnsScalar").also { doInit(it) }
     fun argsReturnsCustomScalar(id: ID? = null) =
         ScalarWithArgsNode("argsReturnsCustomScalar", mapOf("id" to id)).also { doInit(it) }
+    val argsReturnsCustomScalar get() =
+        ScalarNode("argsReturnsCustomScalar").also { doInit(it) }
     fun argsIdWithDefault(id: ID? = null, init: Foo.() -> Unit) =
         Foo("argsIdWithDefault").apply { addArgs("id", id) }.also { doInit(it, init) }
     fun argsStringWithDefault(name: String? = null, init: Foo.() -> Unit) =
@@ -99,8 +103,12 @@ class Query(__name: String = "query"): ObjectNode(__name) {
         Foo("argsCustomScalarWithDefault").apply { addArgs("my", my) }.also { doInit(it, init) }
     fun argsReturnsScalarWithDefault(id: ID? = null) =
         ScalarWithArgsNode("argsReturnsScalarWithDefault", mapOf("id" to id)).also { doInit(it) }
+    val argsReturnsScalarWithDefault get() =
+        ScalarNode("argsReturnsScalarWithDefault").also { doInit(it) }
     fun argsReturnsCustomScalarWithDefault(id: ID? = null) =
         ScalarWithArgsNode("argsReturnsCustomScalarWithDefault", mapOf("id" to id)).also { doInit(it) }
+    val argsReturnsCustomScalarWithDefault get() =
+        ScalarNode("argsReturnsCustomScalarWithDefault").also { doInit(it) }
 }
 
 class Foo(__name: String = "Foo"): ObjectNode(__name) {
