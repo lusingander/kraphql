@@ -83,5 +83,8 @@ class DslBuilder(
         types.objectTypes.forEach {
             it.build(writer, types.scalars())
         }
+        types.interfaceTypes.forEach {
+            it.build(writer, types.scalars())
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.github.lusingander.kraphql.dsl
 
 import com.github.lusingander.kraphql.graphql.RootType
+import com.sun.jdi.InterfaceType
 import graphql.language.*
 import java.io.PrintWriter
 
@@ -23,6 +24,13 @@ class ObjectType(
 }
 
 fun ObjectTypeDefinition.convert(): ObjectType {
+    return ObjectType(
+        name = this.name,
+        fields = this.fieldDefinitions.map { it.convert() }
+    )
+}
+
+fun InterfaceTypeDefinition.convert(): ObjectType {
     return ObjectType(
         name = this.name,
         fields = this.fieldDefinitions.map { it.convert() }

@@ -6,7 +6,8 @@ import com.github.lusingander.kraphql.graphql.ScalarType
 data class Types(
     val objectTypes: List<ObjectType>,
     val scalarTypes: List<CustomScalarType>,
-    val enumTypes: List<EnumType>
+    val enumTypes: List<EnumType>,
+    val interfaceTypes: List<ObjectType>
 ) {
 
     fun scalars(): Set<String> = ScalarType.labels() + customScalars() + enums()

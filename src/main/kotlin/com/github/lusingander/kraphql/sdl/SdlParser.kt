@@ -3,6 +3,7 @@ package com.github.lusingander.kraphql.sdl
 import com.github.lusingander.kraphql.dsl.Types
 import com.github.lusingander.kraphql.dsl.convert
 import graphql.language.EnumTypeDefinition
+import graphql.language.InterfaceTypeDefinition
 import graphql.language.ObjectTypeDefinition
 import graphql.language.ScalarTypeDefinition
 import graphql.parser.Parser
@@ -19,11 +20,13 @@ class SdlParser(
         val objectTypeDefinitions = doc.getDefinitionsOfType(ObjectTypeDefinition::class.java)
         val scalarTypeDefinitions = doc.getDefinitionsOfType(ScalarTypeDefinition::class.java)
         val enumTypeDefinitions = doc.getDefinitionsOfType(EnumTypeDefinition::class.java)
+        val interfaceTypeDefinitions = doc.getDefinitionsOfType(InterfaceTypeDefinition::class.java)
 
         return Types(
             objectTypes = objectTypeDefinitions.map { it.convert() },
             scalarTypes = scalarTypeDefinitions.map { it.convert() },
-            enumTypes = enumTypeDefinitions.map { it.convert() }
+            enumTypes = enumTypeDefinitions.map { it.convert() },
+            interfaceTypes = interfaceTypeDefinitions.map { it.convert() }
         )
     }
 }
