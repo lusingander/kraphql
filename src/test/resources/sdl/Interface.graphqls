@@ -1,0 +1,20 @@
+type Query {
+    foo: Foo!
+}
+
+interface Foo {
+    id: ID!
+    calc(name: String!): Float!
+}
+
+type Bar implements Foo {
+    id: ID!
+    calc(name: String!): Float!
+    value: Int!
+}
+
+type Baz implements Foo {
+    id: ID!
+    calc(name: String!): Float!
+    rate: Float!
+}
