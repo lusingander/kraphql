@@ -1,12 +1,14 @@
 package com.github.lusingander.kraphql.dsl
 
 import com.github.lusingander.kraphql.graphql.RootType
+import com.github.lusingander.kraphql.graphql.baseTypeName
 import graphql.language.*
 import java.io.PrintWriter
 
 class ObjectType(
     val name: String,
-    val fields: List<ObjectField>
+    val fields: List<ObjectField>,
+    val implements: List<String>
 ) {
 
     fun build(writer: PrintWriter, customScalars: Set<String>) {
@@ -25,6 +27,7 @@ class ObjectType(
 fun ObjectTypeDefinition.convert(): ObjectType {
     return ObjectType(
         name = this.name,
-        fields = this.fieldDefinitions.map { it.convert() }
+        fields = this.fieldDefinitions.map { it.convert() },
+        implements = this.implements.map { it.baseTypeName() }
     )
 }

@@ -22,11 +22,16 @@ class SdlParser(
         val enumTypeDefinitions = doc.getDefinitionsOfType(EnumTypeDefinition::class.java)
         val interfaceTypeDefinitions = doc.getDefinitionsOfType(InterfaceTypeDefinition::class.java)
 
+        val objectTypes = objectTypeDefinitions.map { it.convert() }
+        val scalarTypes = scalarTypeDefinitions.map { it.convert() }
+        val enumTypes = enumTypeDefinitions.map { it.convert() }
+        val interfaceTypes = interfaceTypeDefinitions.map { it.convert(objectTypes) }
+
         return Types(
-            objectTypes = objectTypeDefinitions.map { it.convert() },
-            scalarTypes = scalarTypeDefinitions.map { it.convert() },
-            enumTypes = enumTypeDefinitions.map { it.convert() },
-            interfaceTypes = interfaceTypeDefinitions.map { it.convert() }
+            objectTypes = objectTypes,
+            scalarTypes = scalarTypes,
+            enumTypes = enumTypes,
+            interfaceTypes = interfaceTypes
         )
     }
 }

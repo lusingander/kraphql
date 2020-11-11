@@ -6,7 +6,8 @@ import java.io.PrintWriter
 
 class InterfaceType(
     val name: String,
-    val fields: List<ObjectField>
+    val fields: List<ObjectField>,
+    val implements: List<String>
 ) {
 
     fun build(writer: PrintWriter, customScalars: Set<String>) {
@@ -15,6 +16,10 @@ class InterfaceType(
         fields.forEach { field ->
             field.build(writer, customScalars)
         }
+        implements.forEach {
+            writer.println("    fun `on $it`(init: $it.() -> Unit) =")
+            writer.println("        $it(\"...on $it\").also { doInit(it, init) }")
+        }
         writer.println("}")
     }
 
@@ -22,9 +27,10 @@ class InterfaceType(
         if (name in RootType.labels()) name.toLowerCase() else name
 }
 
-fun InterfaceTypeDefinition.convert(): InterfaceType {
+fun InterfaceTypeDefinition.convert(objectTypes: List<ObjectType>): InterfaceType {
     return InterfaceType(
         name = this.name,
-        fields = this.fieldDefinitions.map { it.convert() }
+        fields = this.fieldDefinitions.map { it.convert() },
+        implements = objectTypes.filter { it.implements.contains(this.name) }.map { it.name }
     )
 }
