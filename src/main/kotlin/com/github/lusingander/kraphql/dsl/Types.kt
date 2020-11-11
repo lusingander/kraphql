@@ -7,7 +7,7 @@ data class Types(
     val objectTypes: List<ObjectType>,
     val scalarTypes: List<CustomScalarType>,
     val enumTypes: List<EnumType>,
-    val interfaceTypes: List<ObjectType>
+    val interfaceTypes: List<InterfaceType>
 ) {
 
     fun scalars(): Set<String> = ScalarType.labels() + customScalars() + enums()

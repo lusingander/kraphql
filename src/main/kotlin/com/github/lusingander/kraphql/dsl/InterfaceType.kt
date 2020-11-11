@@ -1,10 +1,10 @@
 package com.github.lusingander.kraphql.dsl
 
 import com.github.lusingander.kraphql.graphql.RootType
-import graphql.language.*
+import graphql.language.InterfaceTypeDefinition
 import java.io.PrintWriter
 
-class ObjectType(
+class InterfaceType(
     val name: String,
     val fields: List<ObjectField>
 ) {
@@ -22,8 +22,8 @@ class ObjectType(
         if (name in RootType.labels()) name.toLowerCase() else name
 }
 
-fun ObjectTypeDefinition.convert(): ObjectType {
-    return ObjectType(
+fun InterfaceTypeDefinition.convert(): InterfaceType {
+    return InterfaceType(
         name = this.name,
         fields = this.fieldDefinitions.map { it.convert() }
     )
