@@ -12,6 +12,14 @@ class Interface {
             foo {
                 id
                 calc(name = "abc123")
+                `on Bar` {
+                    id
+                    value
+                }
+                `on Baz` {
+                    id
+                    rate
+                }
             }
         }
         val expected = """
@@ -19,6 +27,14 @@ class Interface {
               foo {
                 id
                 calc(name: "abc123")
+                ... on Bar {
+                  id
+                  value
+                }
+                ... on Baz {
+                  id
+                  rate
+                }
               }
             }
         """.trimIndent()

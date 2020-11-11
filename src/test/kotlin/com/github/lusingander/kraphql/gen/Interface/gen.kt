@@ -84,4 +84,8 @@ class Foo(__name: String = "Foo"): ObjectNode(__name) {
         ScalarNode("id").also { doInit(it) }
     fun calc(name: String) =
         ScalarWithArgsNode("calc", mapOf("name" to name)).also { doInit(it) }
+    fun `on Bar`(init: Bar.() -> Unit) =
+        Bar("...on Bar").also { doInit(it, init) }
+    fun `on Baz`(init: Baz.() -> Unit) =
+        Baz("...on Baz").also { doInit(it, init) }
 }
