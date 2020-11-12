@@ -10,7 +10,7 @@ class UnionType(
     val members: List<String>
 ) {
 
-    fun build(writer: PrintWriter, customScalars: Set<String>) {
+    fun build(writer: PrintWriter) {
         writer.println("")
         writer.println("class $name(__name: String = \"${objectName()}\"): ObjectNode(__name) {")
         members.forEach {

@@ -87,7 +87,7 @@ class DslBuilder(
             it.build(writer, types.scalars())
         }
         types.unionTypes.forEach {
-            it.build(writer, types.scalars())
+            it.build(writer)
         }
     }
 }
