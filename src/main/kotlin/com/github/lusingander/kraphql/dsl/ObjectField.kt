@@ -1,16 +1,22 @@
 package com.github.lusingander.kraphql.dsl
 
 import com.github.lusingander.kraphql.graphql.baseTypeName
+import com.github.lusingander.kraphql.graphql.getReason
+import com.github.lusingander.kraphql.graphql.isDeprecated
 import graphql.language.FieldDefinition
 import java.io.PrintWriter
 
 class ObjectField(
     val name: String,
     val baseType: String,
-    val inputs: List<InputValue>
+    val inputs: List<InputValue>,
+    val deprecated: String?
 ) {
 
     fun build(writer: PrintWriter, scalars: Set<String>) {
+        if (deprecated != null) {
+            writer.println("    @Deprecated(\"$deprecated\")")
+        }
         if (isScalar(scalars)) {
             if (hasInputs()) {
                 val args = inputs.joinToString(separator = ", ") { it.argsStr() }
@@ -48,6 +54,7 @@ fun FieldDefinition.convert(): ObjectField {
     return ObjectField(
         name = this.name,
         baseType = this.type.baseTypeName(),
-        inputs = this.inputValueDefinitions.map { it.convert() }
+        inputs = this.inputValueDefinitions.map { it.convert() },
+        deprecated = this.directives.find { it.isDeprecated() }?.let { it.getReason() }
     )
 }
