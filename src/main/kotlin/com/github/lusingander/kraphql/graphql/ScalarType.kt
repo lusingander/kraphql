@@ -10,6 +10,7 @@ enum class ScalarType(private val label: String) {
 
     companion object {
         fun labels(): Set<String> = values().map { it.label }.toSet()
+        fun stringTypeLabels(): Set<String> = setOf(ID, STRING).map { it.label }.toSet()
     }
 }
 

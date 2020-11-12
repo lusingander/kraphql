@@ -8,11 +8,13 @@ data class Types(
     val scalarTypes: List<CustomScalarType>,
     val enumTypes: List<EnumType>,
     val interfaceTypes: List<InterfaceType>,
-    val unionTypes: List<UnionType>
+    val unionTypes: List<UnionType>,
+    val inputObjectTypes: List<InputObjectType>
 ) {
 
     fun scalars(): Set<String> = ScalarType.labels() + customScalars() + enums()
     fun customScalars(): Set<String> = scalarTypes.map { it.name }.toSet()
+    fun stringTypeScalars(): Set<String> = ScalarType.stringTypeLabels() + customScalars()
 
     fun existQuery(): Boolean = existRootTypeOf(RootType.QUERY)
     fun existMutation(): Boolean = existRootTypeOf(RootType.MUTATION)

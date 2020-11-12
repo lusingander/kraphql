@@ -89,5 +89,8 @@ class DslBuilder(
         types.unionTypes.forEach {
             it.build(writer)
         }
+        types.inputObjectTypes.forEach {
+            it.build(writer, types.stringTypeScalars())
+        }
     }
 }
