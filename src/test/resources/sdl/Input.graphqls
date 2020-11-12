@@ -1,0 +1,15 @@
+type Query {
+    foo(input: FooInput!): Foo
+    fooOpt(input: FooInput): Foo
+}
+
+input FooInput {
+    name: String!
+    value: Int
+}
+
+type Foo {
+    id: ID!
+    name: String!
+    value: Int
+}
