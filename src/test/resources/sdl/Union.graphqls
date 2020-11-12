@@ -1,0 +1,17 @@
+type Query {
+    foo: Foo!
+}
+
+union Foo = Bar | Baz
+
+type Bar {
+    id: ID!
+    value: Int!
+    calc(n: Int!): Int!
+}
+
+type Baz {
+    id: ID!
+    rate: Float!
+    search(name: String): String!
+}
