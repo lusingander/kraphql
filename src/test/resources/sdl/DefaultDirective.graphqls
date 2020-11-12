@@ -1,0 +1,8 @@
+type Query {
+    foo: Foo!
+}
+
+type Foo {
+    id: ID!
+    name: String! @deprecated(reason: "foo")
+}
