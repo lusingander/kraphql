@@ -56,3 +56,12 @@ tasks {
         }
     }
 }
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "com.github.lusingander.kraphql.KraphQLKt"
+    }
+    from(
+        { configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) } }
+    )
+}
