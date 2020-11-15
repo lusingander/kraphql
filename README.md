@@ -77,3 +77,9 @@ See `./src/test/` directory
 ### Generated Kotlin codes
 
 [./src/test/kotlin/com/github/lusingander/kraphql/gen](https://github.com/lusingander/kraphql/tree/master/src/test/kotlin/com/github/lusingander/kraphql/gen)
+
+## Related projects
+
+- [lusingander/kraphql-github](https://github.com/lusingander/kraphql-github)
+  - Kotlin DSL for GitHub GraphQL API (GitHub API v4)
+
