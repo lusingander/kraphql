@@ -27,7 +27,6 @@ class UnionType(
 }
 
 fun UnionTypeDefinition.convert(): UnionType {
-    this.memberTypes
     return UnionType(
         name = this.name,
         qname = this.name.backquote(),
