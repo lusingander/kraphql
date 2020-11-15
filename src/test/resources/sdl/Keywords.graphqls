@@ -1,0 +1,8 @@
+type Query {
+    foo: Foo
+}
+
+type Foo {
+    package: String!
+    object(class: ID, null: Boolean): Int!
+}
