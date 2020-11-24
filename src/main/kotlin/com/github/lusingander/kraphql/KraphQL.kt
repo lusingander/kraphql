@@ -3,42 +3,62 @@ package com.github.lusingander.kraphql
 import com.github.lusingander.kraphql.dsl.Configuration
 import com.github.lusingander.kraphql.dsl.DslBuilder
 import com.github.lusingander.kraphql.sdl.SdlParser
-import kotlinx.cli.ArgParser
-import kotlinx.cli.ArgType
-import kotlinx.cli.default
-import kotlinx.cli.required
+import org.gradle.api.DefaultTask
+import org.gradle.api.GradleException
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+import org.gradle.api.tasks.TaskAction
 import java.io.File
-import java.io.PrintWriter
 
-fun main(args: Array<String>) {
-    val argParser = ArgParser("kraphql")
-    val input by argParser.option(
-        type = ArgType.String,
-        shortName = "i",
-        description = "Input SDL file path"
-    ).required()
-    val output by argParser.option(
-        type = ArgType.String,
-        shortName = "o",
-        description = "Output .kt file path"
-    ).required()
-    val packageName by argParser.option(
-        type = ArgType.String,
-        fullName = "package",
-        shortName = "p",
-        description = "Package name of output .kt"
-    ).default("com.example")
-    argParser.parse(args)
+private const val TASK_NAME = "kraphqlGenerateDsl"
+private const val TASK_EXTENSION_NAME = "kraphql"
 
-    val configuration = Configuration(
-        packageName = packageName
-    )
+open class KraphQLExtension {
+    var input: String? = null
+    var output: String? = null
+    var packageName: String? = "com.example"
+}
 
-    val sdl = File(input).readText()
-    val parsed = SdlParser(sdl).parse()
+open class KraphQLTask : DefaultTask() {
 
-    File(output).printWriter().use { writer ->
-        val builder = DslBuilder(configuration, writer)
-        builder.build(parsed)
+    @TaskAction
+    fun action() {
+        val extension = project.extensions.getByName(TASK_EXTENSION_NAME) as KraphQLExtension
+        val input = extension.input
+        val output = extension.output
+        val packageName = extension.packageName
+
+        if (input.isNullOrEmpty()) {
+            throw GradleException("input must not be empty")
+        }
+        if (output.isNullOrEmpty()) {
+            throw GradleException("output must not be empty")
+        }
+        if (packageName.isNullOrEmpty()) {
+            throw GradleException("package must not be empty")
+        }
+
+        val configuration = Configuration(
+            packageName = packageName
+        )
+
+        val sdl = File(input).readText()
+        val parsed = SdlParser(sdl).parse()
+
+        File(output).printWriter().use { writer ->
+            val builder = DslBuilder(configuration, writer)
+            builder.build(parsed)
+        }
+    }
+}
+
+class KraphQLPlugin : Plugin<Project> {
+
+    override fun apply(project: Project) {
+
+        project.extensions.create(TASK_EXTENSION_NAME, KraphQLExtension::class.java)
+        project.tasks.create(TASK_NAME, KraphQLTask::class.java) {
+            description = "Generate DSL definitions"
+        }
     }
 }

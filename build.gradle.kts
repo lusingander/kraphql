@@ -1,9 +1,13 @@
 plugins {
     kotlin("jvm") version "1.3.72"
     java
+    `kotlin-dsl`
+    `java-gradle-plugin`
+    `maven-publish`
+    id("com.github.lusingander.kraphql") version "0.0.1"
 }
 
-group = "com.github.lusingander.kraphql"
+group = "com.github.lusingander"
 version = "0.0.1"
 
 repositories {
@@ -57,11 +61,11 @@ tasks {
     }
 }
 
-tasks.jar {
-    manifest {
-        attributes["Main-Class"] = "com.github.lusingander.kraphql.KraphQLKt"
+gradlePlugin {
+    plugins {
+        create("kraphql") {
+            id = "com.github.lusingander.kraphql"
+            implementationClass = "com.github.lusingander.kraphql.KraphQLPlugin"
+        }
     }
-    from(
-        { configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) } }
-    )
 }
