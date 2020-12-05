@@ -28,6 +28,20 @@ class SingleNonNullArgument {
     }
 
     @Test
+    fun argsId_Escaped() {
+        val q = query {
+            argsId(id = "abc123") {
+                id
+            }
+        }
+        val expected = """query { argsId(id: \"abc123\") { id } }"""
+
+        val actual = q.toEscapedString()
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
     fun argsString() {
         val q = query {
             argsString(name = "foo bar") {
@@ -43,6 +57,20 @@ class SingleNonNullArgument {
         """.trimIndent()
 
         val actual = formatQuery(q.toString())
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun argsString_Escaped() {
+        val q = query {
+            argsString(name = "foo bar") {
+                name
+            }
+        }
+        val expected = """query { argsString(name: \"foo bar\") { name } }"""
+
+        val actual = q.toEscapedString()
 
         assertThat(actual).isEqualTo(expected)
     }

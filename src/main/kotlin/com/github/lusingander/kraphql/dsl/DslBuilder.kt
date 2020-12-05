@@ -43,6 +43,8 @@ class DslBuilder(
         writer.println("    override fun toString() =")
         writer.println("        \"\$__name\${argsStr()} { \${children.joinToString(\" \")} }\"")
         writer.println("")
+        writer.println("    fun toEscapedString() = toString().replace(\"\\\"\", \"\\\\\\\"\")")
+        writer.println("")
         writer.println("    private fun argsStr(): String {")
         writer.println("        val filtered = argsMap.filter { (_, v) ->")
         writer.println("            v != null")

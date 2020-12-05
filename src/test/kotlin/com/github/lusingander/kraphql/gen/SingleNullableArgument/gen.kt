@@ -23,6 +23,8 @@ open class ObjectNode(protected val __name: String) {
     override fun toString() =
         "$__name${argsStr()} { ${children.joinToString(" ")} }"
 
+    fun toEscapedString() = toString().replace("\"", "\\\"")
+
     private fun argsStr(): String {
         val filtered = argsMap.filter { (_, v) ->
             v != null
