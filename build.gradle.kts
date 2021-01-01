@@ -4,6 +4,7 @@ plugins {
     `kotlin-dsl`
     `java-gradle-plugin`
     `maven-publish`
+    id("com.gradle.plugin-publish") version "0.12.0"
 }
 
 group = "com.github.lusingander"
@@ -28,9 +29,22 @@ tasks.test {
 
 gradlePlugin {
     plugins {
-        create("kraphql") {
-            id = "com.github.lusingander.kraphql"
+        create("kraphqlPlugin") {
+            id = "com.github.lusingander.kraphql-plugin"
             implementationClass = "com.github.lusingander.kraphql.KraphQLPlugin"
+        }
+    }
+}
+
+pluginBundle {
+    website = "https://github.com/lusingander/kraphql"
+    vcsUrl = "https://github.com/lusingander/kraphql"
+    description = "Generate Kotlin DSL from GraphQL schema"
+    (plugins) {
+        "kraphqlPlugin" {
+            displayName = "KraphQL Plugin"
+            tags = listOf("kotlin", "graphql", "code-generation")
+            version = "0.0.1"
         }
     }
 }
