@@ -34,3 +34,32 @@ gradlePlugin {
         }
     }
 }
+
+tasks {
+
+    val outputDirBase = "./src/test/kotlin/com/github/lusingander/kraphql/gen"
+
+    val sdlDir = file("src/test/resources/sdl/")
+    val sdlFiles = sdlDir.listFiles()
+    sdlFiles.forEach {
+        val outputDir = "$outputDirBase/${it.nameWithoutExtension}"
+        mkdir(outputDir)
+        register("generate-${it.name}", JavaExec::class.java) {
+            main = "com.github.lusingander.kraphql.KraphQLKt"
+            classpath = sourceSets["main"].runtimeClasspath
+            group = "generate"
+            args = listOf(
+                it.absolutePath,
+                "$outputDir/gen.kt",
+                "com.github.lusingander.kraphql.gen.${it.nameWithoutExtension}"
+            )
+        }
+    }
+
+    register("generate") {
+        group = "build"
+        sdlFiles.forEach {
+            dependsOn("generate-${it.name}")
+        }
+    }
+}

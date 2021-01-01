@@ -38,17 +38,7 @@ open class KraphQLTask : DefaultTask() {
             throw GradleException("package must not be empty")
         }
 
-        val configuration = Configuration(
-            packageName = packageName
-        )
-
-        val sdl = File(input).readText()
-        val parsed = SdlParser(sdl).parse()
-
-        File(output).printWriter().use { writer ->
-            val builder = DslBuilder(configuration, writer)
-            builder.build(parsed)
-        }
+        generate(input, output, packageName)
     }
 }
 
@@ -62,3 +52,20 @@ class KraphQLPlugin : Plugin<Project> {
         }
     }
 }
+
+private fun generate(input: String, output: String, packageName: String) {
+
+    val configuration = Configuration(
+        packageName = packageName
+    )
+
+    val sdl = File(input).readText()
+    val parsed = SdlParser(sdl).parse()
+
+    File(output).printWriter().use { writer ->
+        val builder = DslBuilder(configuration, writer)
+        builder.build(parsed)
+    }
+}
+
+fun main(args: Array<String>) = generate(args[0], args[1], args[2])
