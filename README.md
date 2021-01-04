@@ -7,6 +7,8 @@ Kotlin DSL Generator for GraphQL
 [GraphQL schema] --(KraphQL)--> [DSL definition .kt file] <-- Call from your code
 ```
 
+## About
+
 For example, given the following schema:
 
 ```graphql
@@ -62,9 +64,31 @@ Then, we can use it to write the following DSL:
     }
 ```
 
+## Usage
+
+KraphQL is available as [Gradle plugin](https://plugins.gradle.org/plugin/com.github.lusingander.kraphql-plugin).
+
+Add the following to build.gradle:
+
+```groovy
+plugins {
+  id "com.github.lusingander.kraphql-plugin" version "0.0.1"
+}
+
+kraphql {
+    input = "./schema.graphql"
+    output = "./output.kt"
+    packageName = "com.github.example"
+}
+```
+
+Then, when you run the `kraphqlGenerateDsl` task, it will output the Kotlin DSL file.
+
+For an example, see [kraphql-github](https://github.com/lusingander/kraphql-github).
+
 ## Sample
 
-See `./src/test/` directory
+See `./src/test/` directory, or see [Related projects](#related-projects).
 
 ### Test codes
 
