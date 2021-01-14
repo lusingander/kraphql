@@ -1,6 +1,8 @@
 KraphQL
 ====
 
+[![gradle plugin](https://img.shields.io/maven-metadata/v/https/plugins.gradle.org/m2/com/github/lusingander/kraphql-plugin/com.github.lusingander.kraphql-plugin.gradle.plugin/maven-metadata.xml.svg?label=Gradle&style=flat-square)](https://plugins.gradle.org/plugin/com.github.lusingander.kraphql-plugin)
+
 Kotlin DSL Generator for GraphQL
 
 ```
