@@ -9,6 +9,8 @@ Kotlin DSL Generator for GraphQL
 [GraphQL schema] --(KraphQL)--> [DSL definition .kt file] <-- Call from your code
 ```
 
+<img src="./image.gif" width=600>
+
 ## About
 
 For example, given the following schema:
