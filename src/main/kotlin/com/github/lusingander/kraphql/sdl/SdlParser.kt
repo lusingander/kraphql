@@ -4,6 +4,7 @@ import com.github.lusingander.kraphql.dsl.Types
 import com.github.lusingander.kraphql.dsl.convert
 import graphql.language.*
 import graphql.parser.Parser
+import graphql.parser.ParserOptions
 
 // https://github.com/graphql-java/graphql-java
 
@@ -11,8 +12,15 @@ class SdlParser(
     private val src: String
 ) {
 
+    companion object {
+        // https://github.com/graphql-java/graphql-java/pull/2549
+        // default value is 15,000
+        private const val PARSER_MAX_TOKEN_NUMBER = 1_000_000
+    }
+
     fun parse(): Types {
-        val doc = Parser.parse(src)
+        val options = ParserOptions.getDefaultParserOptions().transform { it.maxTokens(PARSER_MAX_TOKEN_NUMBER) }
+        val doc = Parser().parseDocument(src, options)
 
         val objectTypeDefinitions = doc.getDefinitionsOfType(ObjectTypeDefinition::class.java)
         val scalarTypeDefinitions = doc.getDefinitionsOfType(ScalarTypeDefinition::class.java)
