@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.github.lusingander"
-version = "0.0.3"
+version = "0.0.4"
 
 repositories {
     mavenCentral()
@@ -45,7 +45,7 @@ pluginBundle {
         "kraphqlPlugin" {
             displayName = "KraphQL Plugin"
             tags = listOf("kotlin", "graphql", "code-generation")
-            version = "0.0.3"
+            version = "0.0.4"
         }
     }
 }
