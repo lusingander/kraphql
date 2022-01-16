@@ -16,7 +16,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("com.graphql-java:graphql-java:2020-10-01T21-06-37-558aeaa")
+    implementation("com.graphql-java:graphql-java:17.3")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
     testImplementation("org.assertj:assertj-core:3.17.2")
