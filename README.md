@@ -76,7 +76,7 @@ Add the following to build.gradle:
 
 ```groovy
 plugins {
-  id "com.github.lusingander.kraphql-plugin" version "0.0.3"
+  id "com.github.lusingander.kraphql-plugin" version "0.0.4"
 }
 
 kraphql {
